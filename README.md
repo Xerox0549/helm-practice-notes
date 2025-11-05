@@ -61,3 +61,51 @@ helm package apache-helm
 ```bash
 helm upgrade pro-apache ./apache-helm -n pro-apache
 ```
+12. if we need to roll back of any specific previous pod for revising number 1 means that we are going to back at previous version and check the pods and show it previous version
+```bash
+helm rollback pro-apache 1 pro-apache
+```
+13. for checking the pods 
+```
+kubeckt get pods -n pro-apache
+```
+14. Now if we create to create a node.js aap using helm 
+```bash
+helm create node-js-app
+```
+# after that making the file we need to make it package of the node-js-app befor making this we can change the file configuration of chart.yml and templates/servicce.yml for targetport mapping
+1. make a package of node.js of 
+```bash
+helm package node-js-app/
+helm install dev-node-js-app node-js-app -n dev-node --create-namespace 
+```
+# for the check pods id is running or not 
+```bash
+kubectl get pods -n dev-node
+```
+# for the check service is it running or not 
+```bash
+kubectl get svc -n dev-node
+```
+# Now here we perform port forwarding of service for check the user interface
+```bash
+kubectl Port-forwarding svc/dev-node-app -n dev-node-app 8000:8000 --address=0.0.0.0
+```
+## helm using helm 
+
+```bash
+Helm search repo {repo-name}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
