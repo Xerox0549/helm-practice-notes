@@ -73,25 +73,25 @@ kubeckt get pods -n pro-apache
 ```bash
 helm create node-js-app
 ```
-# after that making the file we need to make it package of the node-js-app befor making this we can change the file configuration of chart.yml and templates/servicce.yml for targetport mapping
-1. make a package of node.js of 
+15. After that making the file we need to make it package of the node-js-app befor making this we can change the file configuration of chart.yml and templates/servicce.yml for targetport mapping
+1. Make a package of node.js of 
 ```bash
 helm package node-js-app/
 helm install dev-node-js-app node-js-app -n dev-node --create-namespace 
 ```
-# for the check pods id is running or not 
+2. For the check pods id is running or not 
 ```bash
 kubectl get pods -n dev-node
 ```
-# for the check service is it running or not 
+3. For the check service is it running or not 
 ```bash
 kubectl get svc -n dev-node
 ```
-# Now here we perform port forwarding of service for check the user interface
+4. Now here we perform port forwarding of service for check the user interface
 ```bash
 kubectl Port-forwarding svc/dev-node-app -n dev-node-app 8000:8000 --address=0.0.0.0
 ```
-## helm using helm 
+ 5. Helm using helm 
 
 ```bash
 Helm search repo {repo-name}
