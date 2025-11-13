@@ -1,0 +1,13 @@
+kind: pod
+apiversion: v1
+metadata:
+  name: sidecar-test
+spec:
+  containers:
+  - name: main-container
+    image: busybox:latest
+    command: ['sh', '-c', "echo 'Main application running...'; sleep 3600"]
+
+  - name: sidecar-container
+    image: busybox:latest
+    command: ['sh', '-c', "while true; do echo 'Sidecar logger active...'; sleep 30; done"]

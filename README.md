@@ -74,9 +74,13 @@ kubeckt get pods -n pro-apache
 helm create node-js-app
 ```
 15. After that making the file we need to make it package of the node-js-app befor making this we can change the file configuration of chart.yml and templates/servicce.yml for targetport mapping
+
 1. Make a package of node.js of 
+
 ```bash
+
 helm package node-js-app/
+
 helm install dev-node-js-app node-js-app -n dev-node --create-namespace 
 ```
 2. For the check pods id is running or not 
@@ -96,8 +100,15 @@ kubectl Port-forwarding svc/dev-node-app -n dev-node-app 8000:8000 --address=0.0
 ```bash
 Helm search repo {repo-name}
 ```
+16. there is new topic and the name off the topic is type of the container into pods like init comtainer and sidecar{ main container}
 
-
+ 1. now here we are apply the init-container.yml file and chech what ever the form using this and here we consider a namespace as default 
+ ```bash
+ kubectl apply -f init-container.yml
+ watch kubectl get pods 
+ ```
+ 2. sidecar container: A sidecar container is a helper container that runs alongside your main application container in the same Pod (in Kubernetes).
+Both containers share the same network, storage (volumes), and lifecycle — meaning they start and stop together.
 
 
 
