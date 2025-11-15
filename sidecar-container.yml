@@ -3,11 +3,23 @@ apiversion: v1
 metadata:
   name: sidecar-test
 spec:
+  volumes:
+  - name: shared-logs
+    emptydir: {}
   containers:
+  # To display logs 
   - name: main-container
     image: busybox:latest
-    command: ['sh', '-c', "echo 'Main application running...'; sleep 3600"]
-
+    command: ['sh', '-c', "while true ; do echo 'HELLO DOSTO' >> /var/log/app.log ; sleep 20 ; done" ]
+    volumemounts:
+    - name: shared-logs
+      mountpath: /var/log/
+ # to display logs 
   - name: sidecar-container
     image: busybox:latest
-    command: ['sh', '-c', "while true; do echo 'Sidecar logger active...'; sleep 30; done"]
+    command: ['sh', '-c', "tail -f /var/log/app.log"]
+    
+    volumemounts:
+    - name: display-logs
+      mountpath: /var/log/
+
