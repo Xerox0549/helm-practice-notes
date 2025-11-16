@@ -7,7 +7,7 @@ spec:
   - name: shared-logs
     emptydir: {}
   containers:
-  # To display logs 
+  # To create logs 
   - name: main-container
     image: busybox:latest
     command: ['sh', '-c', "while true ; do echo 'HELLO DOSTO' >> /var/log/app.log ; sleep 20 ; done" ]
